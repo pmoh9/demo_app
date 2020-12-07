@@ -1,0 +1,13 @@
+<%= form_for @user do |f| %>
+  <p>
+    <%= f.label :email %><br>
+    <%= f.email_field :email, placeholder: "Enter email", autofocus: true %>
+  </p>
+  <p>
+    <%= f.label :password %><br>
+    <%= f.password_field :password, placeholder: "Enter password" %>
+  </p>
+  <p>
+    <%= f.submit "Login" %>
+  </p>
+<% end %>

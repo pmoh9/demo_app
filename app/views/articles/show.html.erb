@@ -1,10 +1,35 @@
 <h1>Showing selected article</h1>
 <p>
-  Title: <%= @article.title %>
+  <strong>Title:</strong> <%= simple_format(@article.title) %>
 </p>
 <p>
-  Description: <%= simple_format(@article.description) %>
+  <strong>Description:</strong> <%= simple_format(@article.description) %>
 </p>
+
+<h3>Comments</h3>
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong><%= comment.commenter %>: </strong><%= comment.body %>
+  </p>
+  <p>
+    <small><%= link_to 'Delete', [comment.article, comment], method: :delete, data: {confirm: "Are you sure?"} %></small>
+  </p>
+<% end %>
+
+<h3>Add a comment:</h3>
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
 
 <%= link_to "Edit", edit_article_path(@article) %>
 <%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: "Are you sure?"} %>
