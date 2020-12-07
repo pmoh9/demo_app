@@ -1,0 +1,4 @@
+<h1 align="center">Welcome to <%= @user.username %>'s page</h1>
+<h3><%= @user.username %>'s articles</h3>
+
+<%= render 'shared/article', obj: @user.articles %>
